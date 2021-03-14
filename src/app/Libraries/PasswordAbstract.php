@@ -22,7 +22,7 @@ abstract class PasswordAbstract
             exit();
         }
 
-        if ($options[0] < 5) {
+        if ($options[0] < 8) {
         throw new Exceptions\PasswordLengthException;
         exit();
         }

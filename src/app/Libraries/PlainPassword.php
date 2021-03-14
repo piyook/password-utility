@@ -3,7 +3,7 @@
 namespace App\Libraries;
 // use App\Exceptions\PasswordLengthException;
 /**
- * Password: class to handle password generation
+ * Password: class to handle password generation containing just letter and numbers
  */
 class PlainPassword extends PasswordAbstract implements PasswordInterface{
     
