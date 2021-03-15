@@ -22,7 +22,7 @@ abstract class PasswordAbstract
             exit();
         }
 
-        if ($options[0] < 8) {
+        if ($options[0] < 6) {
         throw new Exceptions\PasswordLengthException;
         exit();
         }
@@ -45,7 +45,6 @@ abstract class PasswordAbstract
             $password .= substr($key, $random_key_pos, 1);
         }
 
-        var_dump($password);
         return $password;
     }
 
