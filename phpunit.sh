@@ -1,2 +1,5 @@
 #!/bin/bash
-alias = docker-compose run --rm php ./vendor/bin/phpunit --repeat=1
+alias phpunit=docker-compose run --rm php ./vendor/bin/phpunit
+
+##to run multiple tests
+# phpunit --repeat=10

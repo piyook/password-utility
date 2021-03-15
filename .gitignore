@@ -1,1 +1,5 @@
 .env
+vendor
+.phpdoc
+docs
+.phpunit.result.cache

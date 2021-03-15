@@ -3,7 +3,7 @@
 class PasswordControllerTest extends \PHPUnit\Framework\TestCase
 {
     /** @test */
-    public function returns_a_plain_password_object_if_passed_plain_parameter_in_array(){
+    public function returns_a_plain_password_object_if_passed_plain_parameter(){
 
         $passwordUtility = new \App\Controller\PasswordUtility;
 
@@ -13,7 +13,7 @@ class PasswordControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @test */
-    public function returns_a_mixed_password_object_if_passed_mixed_parameter_in_array(){
+    public function returns_a_mixed_password_object_if_passed_mixed_parameter(){
 
         $passwordUtility = new \App\Controller\PasswordUtility;
 
@@ -21,15 +21,26 @@ class PasswordControllerTest extends \PHPUnit\Framework\TestCase
 
         $this->assertInstanceOf(\App\Libraries\MixedPassword::class, $passwordHandler);
     }
+    
 
     /** @test */
-    public function returns_a_password_strength_object_if_passed_null(){
+    public function returns_a_password_strength_object_if_passed_assessment_parameter(){
 
         $passwordUtility = new \App\Controller\PasswordUtility;
 
-        $passwordHandler = $passwordUtility->handler();
+        $passwordHandler = $passwordUtility->handler('assessment');
 
         $this->assertInstanceOf(\App\Libraries\PasswordStrength::class, $passwordHandler);
+    }
+
+    /** @test */
+    public function returns_an_exception_if_no_parameters_passed(){
+
+        $this->expectException(\App\Libraries\Exceptions\PasswordHandlerException::class);
+        
+        $passwordUtility = new \App\Controller\PasswordUtility;
+        $passwordHandler = $passwordUtility->handler();
+
     }
 
     
@@ -45,11 +56,10 @@ public function returns_a_password_of_correct_length_and_no_symobols_if_plain_op
 }
 
 /** @test */
-public function returns_a_password_index_if_called_from_controller_using_null(){
+public function returns_a_password_index_if_called_from_controller_using_assessment(){
 
     $passwordUtility = new \App\Controller\PasswordUtility;
-
-    $password = $passwordUtility->handler()->generate("passW0rd!");
+    $password = $passwordUtility->handler('assessment')->generate("passW0rd!");
 
     $this->assertIsInt($password);
 }

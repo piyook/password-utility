@@ -3,10 +3,25 @@
 namespace App\Controller;
 
 use App\Libraries\PasswordAbstract;
+use App\Libraries\Exceptions\PasswordHandlerException;
 
+/**
+ * PasswordUtility: Returns an object of the required class based on input
+ */
 class PasswordUtility extends PasswordAbstract{
+    
+    /**
+     * handler: return an object of either MixedPassword or PlainPassword class if appropriate string 
+     * is passed or PasswordStrength if null passed
+     *
+     * @param  mixed $options
+     * @return void
+     */
+    public function handler($options=null): object{
 
-    public function handler($options=null){
+        if ($options===null){
+            throw new PasswordHandlerException;
+        }
 
         if (gettype($options) === 'string'){
 
@@ -16,14 +31,16 @@ class PasswordUtility extends PasswordAbstract{
                 return new \App\Libraries\PlainPassword;
             }
             
-            return new \App\Libraries\MixedPassword;
+            if ($options==='mixed') {
+                return new \App\Libraries\MixedPassword;
+            }
+
+            if ($options==='assessment') {
+                return new \App\Libraries\PasswordStrength;
+            }
+          
         }
 
-        if ($options === null){
-            return new \App\Libraries\PasswordStrength;
-        }
-
-    
     }
 
 }

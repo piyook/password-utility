@@ -24,7 +24,7 @@ class PasswordStrengthTest extends \PHPUnit\Framework\TestCase
         $password_index2 = $this->password_check->generate("Password");
         $password_index3 = $this->password_check->generate("Passw4rd");
         $password_index4 = $this->password_check->generate("P@ssw4rd");
-        $password_index5 = $this->password_check->generate("Pssw4rd@123");
+        $password_index5 = $this->password_check->generate('fgtTH@34_ghyYY34$sd');
         
 
         $this->assertTrue($password_index5 > $password_index4);
