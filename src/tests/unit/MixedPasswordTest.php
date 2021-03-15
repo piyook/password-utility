@@ -7,7 +7,7 @@ class MixedPasswordTest extends \PHPUnit\Framework\TestCase
 
             $password = new \App\Libraries\MixedPassword;
 
-            $myPassword = $password->generate([8,'plainText']);
+            $myPassword = $password->generate(8);
 
             $this->assertIsString($myPassword);
 
@@ -18,7 +18,7 @@ class MixedPasswordTest extends \PHPUnit\Framework\TestCase
 
         $password = new \App\Libraries\MixedPassword;
 
-        $myPassword = $password->generate([10,'plainText']);
+        $myPassword = $password->generate(10);
 
 
         $this->assertEquals(10,strlen($myPassword));
@@ -43,7 +43,7 @@ public function password_length_passed_to_generate_too_short_throws_exception():
 
     $password = new \App\Libraries\MixedPassword;
 
-    $myPassword = $password->generate([0,'plainText']);
+    $myPassword = $password->generate(0);
     
 }
 

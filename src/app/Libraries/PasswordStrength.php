@@ -11,9 +11,9 @@ class PasswordStrength {
          * assess: method to generate a password strength value and return a strength
          * index between 0 and 100 and a verbal rating
          * @param  string $password
-         * @return array
+         * @return integer
          */
-        public function generate($password=null){
+        public function generate(string $password=null): int{
 
             if ($password < 6) {
                 throw new Exceptions\PasswordLengthException;

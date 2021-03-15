@@ -7,7 +7,7 @@ class PlainPasswordTest extends \PHPUnit\Framework\TestCase
 
             $password = new \App\Libraries\PlainPassword;
 
-            $myPassword = $password->generate([8,'plainText']);
+            $myPassword = $password->generate(8);
 
             $this->assertIsString($myPassword);
 
@@ -18,7 +18,7 @@ class PlainPasswordTest extends \PHPUnit\Framework\TestCase
 
         $password = new \App\Libraries\PlainPassword;
 
-        $myPassword = $password->generate([10,'plainText']);
+        $myPassword = $password->generate(10);
 
 
         $this->assertEquals(10,strlen($myPassword));
@@ -35,16 +35,6 @@ public function no_parameters_supplied_to_password_generate_throws_exception():v
     
 }
 
-/** @test */
-public function only_no_password_length_passed_to_generate_throws_exception():void {
-
-    $this->expectException(\App\Libraries\Exceptions\PasswordLengthException::class);
-
-    $password = new \App\Libraries\PlainPassword;
-
-    $myPassword = $password->generate(['plainText']);
-    
-}
 
 /** @test */
 public function password_length_passed_to_generate_too_short_throws_exception():void {
@@ -53,7 +43,7 @@ public function password_length_passed_to_generate_too_short_throws_exception():
 
     $password = new \App\Libraries\PlainPassword;
 
-    $myPassword = $password->generate([0,'plainText']);
+    $myPassword = $password->generate(0);
     
 }
 

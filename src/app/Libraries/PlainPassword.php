@@ -13,12 +13,11 @@ class PlainPassword extends PasswordAbstract implements PasswordInterface{
      * @param  mixed $options
      * @return string
      */
-    public function generate(array $options = []){
+    public function generate(int $password_length = null): string {
         
-        $this->checkValidInput($options);
+        $this->checkValidInput($password_length);
 
         $key="abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        $password_length = $options[0];
 
         return $this->generate_password($password_length, $key);
 

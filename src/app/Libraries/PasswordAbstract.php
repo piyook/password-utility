@@ -7,26 +7,43 @@ abstract class PasswordAbstract
     /**
      * generate: method to return a random plain text password 
      * of the specified length in $options[0]
-     * @param  mixed $options
+     * @param  string $options
      * @return string
      */
-    public function checkValidInput(array $options){
+    public function checkValidInputString(string $options=null){
 
+        
         if ( empty($options)) {
             throw new Exceptions\PasswordLengthException;
             exit();
         }
 
-        if (gettype($options[0]) !== "integer") {
+        if (gettype($options) !== "string") {
             throw new Exceptions\PasswordLengthException;
             exit();
         }
 
-        if ($options[0] < 6) {
+    }
+
+    public function checkValidInput(int $password_length = null)
+    {
+
+        if ( $password_length === null) {
+            throw new Exceptions\PasswordLengthException;
+            exit();
+        }
+
+        if (gettype($password_length) !== "integer") {
+            throw new Exceptions\PasswordLengthException;
+            exit();
+        }
+
+        if ($password_length < 6) {
         throw new Exceptions\PasswordLengthException;
         exit();
         }
-    }
+
+        }
 
           
       /**

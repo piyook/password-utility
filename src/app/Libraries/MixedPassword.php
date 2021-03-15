@@ -6,13 +6,12 @@ namespace App\Libraries;
  */
 class MixedPassword extends PasswordAbstract implements PasswordInterface{
     
-    public function generate(array $options = []){
+    public function generate(int $password_length = null): string{
         
-        $this->checkValidInput($options);
+        $this->checkValidInput($password_length);
 
         $key="abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@@££$$%%!!--_??";
-        $password_length = $options[0];
-
+    
         return $this->generate_password($password_length, $key);
 
     }
