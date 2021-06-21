@@ -146,6 +146,8 @@ according to the error messages.
 ### *Generate Plain Text and Number Passwords*
 <br>
 
+**Remember to add _'require __DIR__ . '/vendor/autoload.php';_ to your bootstrap file or entrypoint file**
+
  The Password Handler needs to be instantiated and then the required information passed
 
 ```sh
